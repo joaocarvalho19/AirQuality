@@ -2,36 +2,29 @@ package com.example.demo.city;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
-@Transactional
 public class CityServiceImpl implements CityService {
 
     @Autowired
-    private CityRepository cityRepository;
+    private CityRepositoryImpl cityRepository;
+
 
     @Override
-    public City getCitiesById(Long id) {
-        return cityRepository.findById(id).orElse(null);
+    public City getCitiesById(Long id) throws Exception {
+        return cityRepository.findById(id);
     }
 
     @Override
-    public City getCitiesByName(String name) {
-        /*final String uri = "https://api.waqi.info/feed/"+ name +"/?token=3b42a1a4b7028abfb26999365a4f97594cb54212";
-
-        RestTemplate restTemplate = new RestTemplate();
-        String result = restTemplate.getForObject(uri, String.class);
-
-        return result;*/
+    public City getCitiesByName(String name)throws Exception {
         return cityRepository.findByName(name);
     }
 
     @Override
-    public boolean exists(String name) {
+    public boolean exists(String name)throws Exception {
         if (cityRepository.findByName(name) != null) {
             return true;
         }
@@ -39,12 +32,12 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public City save(City city) {
+    public City save(City city)throws Exception  {
         return cityRepository.save(city);
     }
 
     @Override
-    public List<City> getAllCities() {
+    public List<City> getAllCities() throws Exception{
         return cityRepository.findAll();
     }
 }

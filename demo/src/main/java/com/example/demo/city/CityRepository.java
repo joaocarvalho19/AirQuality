@@ -1,16 +1,17 @@
 package com.example.demo.city;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Repository
-@Transactional
-public interface CityRepository extends JpaRepository<City, Long> {
+public interface CityRepository {
 
-    public City findByName(String name);
-    public List<City> findAll();
+    public City findById(Long id)throws Exception ;
+    public City findByName(String name) throws Exception;
+    public List<City> findAll() throws Exception;
+    public City save(City city)throws Exception ;
 
+    boolean exists(String some_name);
 }
+
+

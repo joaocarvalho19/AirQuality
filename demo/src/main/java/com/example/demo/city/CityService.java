@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface CityService {
 
-    public City getCitiesById(Long id);
+    public City getCitiesById(Long id)throws Exception ;
 
-    public City getCitiesByName(String name);
+    public City getCitiesByName(String name)throws Exception;
 
-    public List<City> getAllCities();
+    public List<City> getAllCities()throws Exception ;
 
-    public boolean exists(String email);
+    public boolean exists(String email)throws Exception ;
 
-    public City save(City city);
+    public City save(City city)throws Exception ;
 }

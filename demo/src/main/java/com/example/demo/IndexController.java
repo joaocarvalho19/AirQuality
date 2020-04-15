@@ -1,26 +1,19 @@
 package com.example.demo;
 
+
 import com.example.demo.city.City;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 @Controller
 public class IndexController {
 
-    @RequestMapping("/")
-    public String index(){
+    @GetMapping("/")
+    public String showSearch(City city, Model model) {
+        model.addAttribute("city",city);
         return "index";
     }
 
-    @RequestMapping(value="/save", method= RequestMethod.POST)
-    public ModelAndView save(@ModelAttribute City city)
-    {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("city-data");
-        modelAndView.addObject("city", city);
-        return modelAndView;
-    }
 }
