@@ -44,8 +44,8 @@ public class CityController {
     }
 
     @PutMapping("air/update")
-    public City update(@RequestBody City employee) throws Exception {
-        cityService.save(employee);
-        return employee;
+    public City update(@RequestBody City city) throws Exception {
+        cityService.save(city);
+        return city;
     }
 }
